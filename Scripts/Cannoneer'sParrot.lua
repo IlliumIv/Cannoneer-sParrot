@@ -3,7 +3,7 @@ function Shot()
 end
 
 function Init()
-    common.UnRegisterEventHandler(Init, "EVENT_AVATAR_CREATED")
+	common.UnRegisterEventHandler(Init, "EVENT_AVATAR_CREATED")
 	common.RegisterEventHandler(Shot, "EVENT_CANNON_SHOT_STARTED")
 end
 
