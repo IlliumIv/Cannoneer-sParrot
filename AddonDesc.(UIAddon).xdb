@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UIAddon>
+	<Name>Cannoneer'sParrot</Name>
+	<AutoStart>true</AutoStart>
+	<ScriptFileRefs>
+		<Item href="Scripts/Cannoneer'sParrot.lua" />
+	</ScriptFileRefs>
+    <author>IlliumIv</author>
+    <localizedNameFileRef href="Name.txt"/>
+    <localizedDescFileRef href="Desc.txt"/>
+</UIAddon>
