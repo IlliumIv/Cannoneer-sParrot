@@ -4,6 +4,7 @@
         "avatar",
         "device",
         "USDEV_BEAM_CANNON",
-        "USDEV_CANNON"
+        "USDEV_CANNON",
+        "USDEV_SHIELD"
     ]
 }

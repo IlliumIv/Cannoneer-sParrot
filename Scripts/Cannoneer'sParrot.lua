@@ -9,7 +9,7 @@ function Cooldown(dev)
 				return
 			end
 		end
-		if deviceType == USDEV_CANNON then
+		if deviceType == USDEV_CANNON or deviceType == USDEV_SHIELD then
 			avatar.DeactivateUsableDevice()
 		end
 	end
