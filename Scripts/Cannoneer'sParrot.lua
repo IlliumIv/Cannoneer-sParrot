@@ -1,35 +1,23 @@
-function CooldownStarted(device)
+function Cooldown(dev)
 	local usableDeviceId = avatar.GetActiveUsableDevice()
-	if usableDeviceId and device.id == usableDeviceId then
-		local deviceInfo = avatar.GetUsableDeviceInfo(usableDeviceId)
-		if deviceInfo then
-			local deviceName = userMods.FromWString(deviceInfo.name)
-			local isCannon = string.find(deviceName, "cannon") or string.find(deviceName, "Cannon") or string.find(deviceName, "пушка") or string.find(deviceName, "Пушка")
-			if isCannon then
+	if usableDeviceId and dev.id == usableDeviceId then
+		local deviceType = device.GetUsableDeviceType(usableDeviceId)
+		if deviceType == USDEV_BEAM_CANNON then
+			local deviceInfo = avatar.GetUsableDeviceInfo(usableDeviceId)
+			if deviceInfo and deviceInfo.actions[2].active then
 				avatar.DeactivateUsableDevice()
+				return
 			end
 		end
-	end
-end
-
-function ActiveActionChanged(device)
-	local usableDeviceId = avatar.GetActiveUsableDevice()
-	if usableDeviceId and device.id == usableDeviceId then
-		local deviceInfo = avatar.GetUsableDeviceInfo(usableDeviceId)
-		if deviceInfo then
-			local deviceName = userMods.FromWString(deviceInfo.name)
-			local isArtillery = string.find(deviceName, "artillery") or string.find(deviceName, "Artillery") or string.find(deviceName, "лучемёт") or string.find(deviceName, "Лучемёт")
-			if isArtillery and deviceInfo.actions[2].active then
-				avatar.DeactivateUsableDevice()
-			end
+		if deviceType == USDEV_CANNON then
+			avatar.DeactivateUsableDevice()
 		end
 	end
 end
 
 function Init()
 	common.UnRegisterEventHandler(Init, "EVENT_AVATAR_CREATED")
-	common.RegisterEventHandler(CooldownStarted, "EVENT_DEVICE_COOLDOWN_STARTED")
-	common.RegisterEventHandler(ActiveActionChanged, "EVENT_DEVICE_ACTIVE_ACTION_CHANGED")
+	common.RegisterEventHandler(Cooldown, "EVENT_DEVICE_COOLDOWN_STARTED")
 end
 
 common.RegisterEventHandler(Init, "EVENT_AVATAR_CREATED")
