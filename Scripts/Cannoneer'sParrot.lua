@@ -9,8 +9,16 @@ function Cooldown(dev)
 				return
 			end
 		end
-		if deviceType == USDEV_CANNON or deviceType == USDEV_SHIELD then
+		if deviceType == USDEV_SHIELD then
 			avatar.DeactivateUsableDevice()
+			return
+		end
+		if deviceType == USDEV_CANNON then
+			local cooldownInfo = device.GetCooldown(usableDeviceId, 0)
+			if (cooldownInfo and cooldownInfo.durationMs > 2000) or (cooldownInfo == nil) then
+				avatar.DeactivateUsableDevice()
+				return
+			end
 		end
 	end
 end
